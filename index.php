@@ -1,7 +1,8 @@
-<?php 
+<?php
+    include("assets/php/conexao.php");
     include("assets/php/Puxar-Dados.php");
-?>
-
+    include("assets/php/Puxar-Postagens.php");
+?>   
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -23,7 +24,7 @@
             <br>Home</a>
         </span>
         <span class="<?php echo $classe_nao_logado; ?>">
-            <a href=""><img class="cabecalho-imagem" src="assets/image/icon/criar.png" alt="icon">
+            <a href="assets/pages/criar-postagem.php"><img class="cabecalho-imagem" src="assets/image/icon/criar.png" alt="icon">
             <br>Criar</a>
         </span>
         <span class="<?php echo $classe_nao_logado; ?>">
@@ -39,7 +40,7 @@
             <br>Entrar</a>
         </span>
         <span class="<?php echo $classe_login; ?>">
-            <a href=""><img class="cabecalho-imagem" src="assets/image/icon/cadastro.png" alt="icon">
+            <a href="assets/pages/cadastro-tela-1.html"><img class="cabecalho-imagem" src="assets/image/icon/cadastro.png" alt="icon">
             <br>Cadastrar</a>
         </span>
     </nav>
@@ -48,8 +49,8 @@
             <h1>Seu Perfil</h1>
             <img src="<?php echo $imagem_perfil; ?>" alt="Imagem-de-Perfil"> 
             <label><?php echo $nome_usuario;?></label>
-            <label class="<?php echo $classe_nao_logado; ?>">2 Seguidores</label>
-            <label class="<?php echo $classe_nao_logado; ?>">20 Seguindo</label>
+            <label class="<?php echo $classe_nao_logado; ?>">0 Seguidores</label>
+            <label class="<?php echo $classe_nao_logado; ?>">0 Seguindo</label>
             <br>
             <button class="postagem-btn <?php echo $classe_nao_logado; ?>" id="postagem-btn">Nova Postagem</button>
             <p></p>
@@ -59,53 +60,9 @@
         <div class="container-postagem">
             <h1>Postagens do Momento</h1>
             <p></p>
-            <div class="postagem">
-                <span class="postagem-organizacao">
-                    <img class="perfil-imagem" src="assets/image/perfil/foto de perfil 2 (teste).jpg" alt="Pessoa-Imagem">
-                    <div class="organizar-data">
-                        <label>Harry Styles</label>
-                        <br>
-                        <label>25/11/2023</label>
-                    </div>
-                </span>
-                    <div class="postagem-imagem">
-                        <p>
-                            Fiz um show na África!
-                        </p>
-                        <img class="postagem-imagem-img" src="assets/image/postagem/imagem postagem 2 (teste).jpg" alt="Postagem-Imagem">
-                        <br>
-                        <span class="interacoes-postagens">
-                            <img id="like" class="like-imagem" src="assets/image/icon/like.png" alt="like">
-                            <img id="deslike" class="deslike-imagem" src="assets/image/icon/deslike.png" alt="like">
-                            <img id="comentario" class="comentario-imagem" src="assets/image/icon/comentario.png" alt="like">
-                            <img id="denuncia" class="denuncia-imagem" src="assets/image/icon/denunciar.png" alt="like">
-                        </span>
-                    </div>
-            </div>
-            <p></p>
-            <div class="postagem">
-                <span class="postagem-organizacao">
-                    <img class="perfil-imagem" src="assets/image/perfil/foto de perfil 3 (teste).jpg" alt="Pessoa-Imagem">
-                    <div class="organizar-data">
-                        <label>Luiz Inácio Lula da Silva</label>
-                        <br>
-                        <label>24/11/2023</label>
-                    </div>
-                </span>
-                    <div class="postagem-imagem">
-                        <p>
-                            Façam o L
-                        </p>
-                        <img class="postagem-imagem-img" src="assets/image/postagem/imagem postagem 3 (teste).jpg" alt="Postagem-Imagem">
-                        <br>
-                        <span class="interacoes-postagens">
-                            <img id="like" class="like-imagem" src="assets/image/icon/like.png" alt="like">
-                            <img id="deslike" class="deslike-imagem" src="assets/image/icon/deslike.png" alt="like">
-                            <img id="comentario" class="comentario-imagem" src="assets/image/icon/comentario.png" alt="like">
-                            <img id="denuncia" class="denuncia-imagem" src="assets/image/icon/denunciar.png" alt="like">
-                        </span>
-                    </div>
-            </div>
+            <?php
+                PuxarPostagens($mysqli, $resultado);
+            ?>
         </div>
         <hr>
         <div class="container-em-alta">
