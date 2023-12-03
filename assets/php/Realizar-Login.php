@@ -5,10 +5,10 @@
     $password = $_POST['senha'];
 
     if (filter_var($user, FILTER_VALIDATE_EMAIL)) {
-        $stmt = $mysqli->prepare("SELECT id, nome, senha FROM usuarios WHERE email = ?");
+        $stmt = $mysqli->prepare("SELECT id, nome_de_usuario, senha FROM usuarios WHERE email = ?");
         $stmt->bind_param("s", $user);
     } else {
-        $stmt = $mysqli->prepare("SELECT id, nome, senha FROM usuarios WHERE nome = ?");
+        $stmt = $mysqli->prepare("SELECT id, nome_de_usuario, senha FROM usuarios WHERE nome_de_usuario = ?");
         $stmt->bind_param("s", $user);
     }
 
@@ -20,7 +20,7 @@
         if(password_verify($password, $usuario['senha'])){
             session_start();
             $_SESSION['id'] = $usuario['id'];
-            $_SESSION['nome'] = $usuario['nome'];
+            $_SESSION['nome'] = $usuario['nome_de_usuario'];
             header("Location: ../../index.php");
             exit();
         }else{
